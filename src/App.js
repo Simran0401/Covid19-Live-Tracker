@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { MenuItem, FormControl, Select } from "@material-ui/core";
+import InfoBox from "./InfoBox";
 import "./App.css";
 
 function App() {
   // STATE --> How to write a variable in REACT
 
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState([]); // To have all the countries in the dropdown list
+  const [country, setCountry] = useState("globally"); //To have the default 'globally' and when when clicked on any other country, that country takes place instead of the 'globally'
 
   // USE EFFECT --> Runs a given piece of code based on a given condition
   useEffect(() => {
@@ -28,12 +30,19 @@ function App() {
     getCountriesData();
   }, []);
 
+  const onCountryChange = async (event) => {
+    const countryCode = event.target.value;
+
+    setCountry(countryCode);
+  };
+
   return (
     <div className="App">
       <div className="app_header">
         <h1>COVID-19 LIVE TRACKER</h1>
         <FormControl className="app_dropdown">
-          <Select variant="outlined" value=" ">
+          <Select variant="outlined" onChange={onCountryChange} value={country}>
+            <MenuItem value="globally">Globally</MenuItem>
             {/* Loop through all the countries and show a dropdown list of the options */}
             {countries.map((country) => (
               <MenuItem value={country.value}>{country.name}</MenuItem>
@@ -41,11 +50,15 @@ function App() {
           </Select>
         </FormControl>
       </div>
-      {/* Header */}
-      {/* Title + World Dropdown field */}
-      {/* Infoboxes */}
-      {/* Infoboxes */}
-      {/* Infoboxes */}
+      <div className="app_stats">
+        <InfoBox title="Coronavirus Cases" cases={123} total={2000} />
+        <InfoBox title="Recovered" cases={123} total={3000} />
+        <InfoBox title="Deaths" cases={123} total={4000} />
+        {/* Infoboxes */}
+        {/* Infoboxes */}
+        {/* Infoboxes */}
+      </div>
+
       {/* Table display countries with their respective covid-19 cases */}
       {/* Graph */}
       {/* World Map */}
