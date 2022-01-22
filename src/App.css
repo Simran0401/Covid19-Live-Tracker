@@ -6,6 +6,12 @@ body {
   background-color: rgb(247, 247, 247);
 }
 
+.App {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
 .app_header {
   display: flex;
   align-items: center;
@@ -16,4 +22,14 @@ body {
 .app_stats {
   display: flex;
   justify-content: space-between;
+}
+
+.app_left {
+  flex: 0.9;
+}
+
+@media (max-width: 990px) {
+  .App {
+    flex-direction: column;
+  }
 }
