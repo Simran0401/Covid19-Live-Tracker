@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
   const [countries, setCountries] = useState([]); // To have all the countries in the dropdown list
   const [country, setCountry] = useState("globally"); //To have the default 'globally' and when when clicked on any other country, that country takes place instead of the 'globally'
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
+
+  // USE EFFECT --> Runs a given piece of code based on a given condition
 
   //This useEffect() is used to fetch and show after the worldwide/global COVID-19 info just as the user loads the webpage
   useEffect(() => {
@@ -26,11 +30,10 @@ function App() {
       });
   }, []);
 
-  // USE EFFECT --> Runs a given piece of code based on a given condition
+  //This useEffect() is used to fetch each country's respective COVID-19 info
   useEffect(() => {
     //The code inside here will run once when the component loads and not again
     // async request --> sends it to the server and wait for it and do something with the info
-
     const getCountriesData = async () => {
       await fetch(" https://disease.sh/v3/covid-19/countries ")
         .then((response) => response.json())
@@ -40,6 +43,7 @@ function App() {
             value: country.countryInfo.iso2, //Shows abbreviations of countries like UK,USA,FR
           }));
 
+          setTableData(data);
           setCountries(countries);
         });
     };
@@ -111,6 +115,7 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           {/* Table display countries with their respective covid-19 cases */}
+          <Table countries={tableData} />
           <h3>New Cases Globally</h3>
           {/* Graph */}
         </CardContent>
