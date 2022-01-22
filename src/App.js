@@ -15,6 +15,16 @@ function App() {
 
   const [countries, setCountries] = useState([]); // To have all the countries in the dropdown list
   const [country, setCountry] = useState("globally"); //To have the default 'globally' and when when clicked on any other country, that country takes place instead of the 'globally'
+  const [countryInfo, setCountryInfo] = useState({});
+
+  //This useEffect() is used to fetch and show after the worldwide/global COVID-19 info just as the user loads the webpage
+  useEffect(() => {
+    fetch("https://disease.sh/v3/covid-19/all")
+      .then((response) => response.json())
+      .then((data) => {
+        setCountryInfo(data);
+      });
+  }, []);
 
   // USE EFFECT --> Runs a given piece of code based on a given condition
   useEffect(() => {
@@ -39,8 +49,19 @@ function App() {
 
   const onCountryChange = async (event) => {
     const countryCode = event.target.value;
-
     setCountry(countryCode);
+
+    const url =
+      countryCode === "globally"
+        ? "https://disease.sh/v3/covid-19/all"
+        : `https://disease.sh/v3/covid-19/countries/${countryCode}`;
+
+    await fetch(url)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountry(countryCode);
+        setCountryInfo(data);
+      });
   };
 
   return (
@@ -63,9 +84,21 @@ function App() {
           </FormControl>
         </div>
         <div className="app_stats">
-          <InfoBox title="Coronavirus Cases" cases={123} total={2000} />
-          <InfoBox title="Recovered" cases={123} total={3000} />
-          <InfoBox title="Deaths" cases={123} total={4000} />
+          <InfoBox
+            title="Coronavirus Cases"
+            cases={countryInfo.todayCases}
+            total={countryInfo.cases}
+          />
+          <InfoBox
+            title="Recovered"
+            cases={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          />
+          <InfoBox
+            title="Deaths"
+            cases={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          />
           {/* Infoboxes */}
           {/* Infoboxes */}
           {/* Infoboxes */}
@@ -78,7 +111,7 @@ function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           {/* Table display countries with their respective covid-19 cases */}
-          <h3>Worldwide New Cases</h3>
+          <h3>New Cases Globally</h3>
           {/* Graph */}
         </CardContent>
       </Card>
