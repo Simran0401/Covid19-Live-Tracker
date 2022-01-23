@@ -9,6 +9,7 @@ import {
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
+import { sortData } from "./util";
 import "./App.css";
 
 function App() {
@@ -43,7 +44,9 @@ function App() {
             value: country.countryInfo.iso2, //Shows abbreviations of countries like UK,USA,FR
           }));
 
-          setTableData(data);
+          const sortedData = sortData(data);
+          // setTableData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
