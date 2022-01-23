@@ -7,9 +7,9 @@ import {
   CardContent,
 } from "@material-ui/core";
 import InfoBox from "./InfoBox";
-import Map from "./Map";
+import "leaflet/dist/leaflet.css";
 import Table from "./Table";
-import { sortData } from "./util";
+import { sortData, prettyPrintStat } from "./util";
 import "./App.css";
 
 function App() {
@@ -93,34 +93,26 @@ function App() {
         <div className="app_stats">
           <InfoBox
             title="Coronavirus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
             title="Recovered"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
             title="Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
-          {/* Infoboxes */}
-          {/* Infoboxes */}
-          {/* Infoboxes */}
         </div>
-
-        {/* World Map */}
-        <Map />
       </div>
       <Card className="app_right">
         <CardContent>
           <h3>Live Cases by Country</h3>
           {/* Table display countries with their respective covid-19 cases */}
           <Table countries={tableData} />
-          <h3>New Cases Globally</h3>
-          {/* Graph */}
         </CardContent>
       </Card>
     </div>
