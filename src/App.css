@@ -19,6 +19,10 @@ body {
   justify-content: space-between;
 }
 
+.app_header h1 span {
+  color: rgb(5, 85, 177);
+}
+
 .app_stats {
   display: flex;
   justify-content: space-between;
