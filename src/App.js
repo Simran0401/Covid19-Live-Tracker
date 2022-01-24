@@ -11,6 +11,7 @@ import "leaflet/dist/leaflet.css";
 import Table from "./Table";
 import { sortData, prettyPrintStat } from "./util";
 import "./App.css";
+import Statewise from "./IndiaStatewiseData/statewise.js";
 
 function App() {
   // STATE --> How to write a variable in REACT
@@ -106,6 +107,9 @@ function App() {
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
           />
+        </div>
+        <div>
+          <Statewise />
         </div>
       </div>
       <Card className="app_right">
