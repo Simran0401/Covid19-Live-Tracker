@@ -5,9 +5,11 @@ import "./statewise.css";
 function Statewise() {
   const [stateData, setStateData] = useState([]);
   const getCovidData = async () => {
-    const response = await fetch("https://data.covid19india.org/data.json");
+    const response = await fetch(
+      "https://api.rootnet.in/covid19-in/stats/latest"
+    );
     const actualData = await response.json();
-    setStateData(actualData.statewise);
+    setStateData(actualData.data.regional);
   };
   useEffect(() => {
     getCovidData();
@@ -26,22 +28,18 @@ function Statewise() {
               <tr>
                 <th>State</th>
                 <th>Confirmed</th>
-                <th>Recovered</th>
+                <th>Discharged</th>
                 <th>Deaths</th>
-                <th>Active</th>
-                <th>Updated</th>
               </tr>
             </thead>
             <tbody>
               {stateData.map((states, index) => {
                 return (
                   <tr key={index}>
-                    <td data-label="State">{states.state}</td>
-                    <td data-label="Confirmed">{states.confirmed}</td>
-                    <td data-label="Recovered">{states.recovered}</td>
+                    <td data-label="State">{states.loc}</td>
+                    <td data-label="Confirmed">{states.totalConfirmed}</td>
+                    <td data-label="Discharged">{states.discharged}</td>
                     <td data-label="Deaths">{states.deaths}</td>
-                    <td data-label="Active">{states.active}</td>
-                    <td data-label="Updated">{states.lastupdatedtime}</td>
                   </tr>
                 );
               })}

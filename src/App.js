@@ -96,17 +96,17 @@ function App() {
         <div className="app_stats">
           <InfoBox
             title="Coronavirus Cases"
-            cases={prettyPrintStat(countryInfo.todayCases)}
+            cases={prettyPrintStat(countryInfo.casesPerOneMillion)}
             total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
             title="Recovered"
-            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            cases={prettyPrintStat(countryInfo.recoveredPerOneMillion)}
             total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
             title="Deaths"
-            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            cases={prettyPrintStat(countryInfo.deathsPerOneMillion)}
             total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
