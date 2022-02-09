@@ -5,7 +5,7 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 function InfoBox({ title, cases, total }) {
   return (
     <Card className="infoBox">
-      <CardContent>
+      <CardContent className="infobox_cases">
         {/*Title i.e, Coronavirus cases*/}
         <Typography className="infoBox_title" color="textSecondary">
           {title}

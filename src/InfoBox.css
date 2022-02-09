@@ -13,6 +13,10 @@
   margin-bottom: 0.5rem;
 }
 
+.infoBox:nth-child(even) .infoBox_cases {
+  color: #01961a;
+}
+
 .infoBox_total {
   color: #6c757d;
   font-weight: 700 !important;
