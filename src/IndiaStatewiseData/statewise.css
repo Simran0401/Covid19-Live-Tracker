@@ -1,13 +1,7 @@
-/* * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-} */
-
 .dashboard {
   padding: 5% 8%;
   margin: 40px auto 0;
-  height: 650px;
+  height: 730px;
   background-color: white;
   padding: 1 rem;
   border-radius: 20px;
@@ -15,6 +9,7 @@
 }
 
 .dashboard-heading {
+  padding-top: 32px;
   font-size: 18px;
   text-align: center;
   color: rgb(3, 48, 105);
@@ -22,12 +17,14 @@
 }
 
 .dashboard-table {
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
   border-collapse: collapse;
 }
 
 .dashboard-table-scroll {
-  height: 610px;
+  height: 630px;
   overflow: scroll;
 }
 
